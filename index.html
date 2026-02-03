@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RCommerce Marketplace</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #5f6368;
+      --border: #e5e7eb;
+      --surface: #fafafa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.4;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: grid;
+      grid-template-columns: 160px 1fr 240px;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 4px;
+      background: var(--surface);
+    }
+
+    .search input {
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 14px;
+      background: transparent;
+    }
+
+    .search button {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      padding: 6px 12px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .account {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .account span {
+      padding: 6px 8px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 24px 40px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 28px;
+    }
+
+    .filters {
+      border: 1px solid var(--border);
+      padding: 18px;
+      background: var(--surface);
+      font-size: 13px;
+      display: grid;
+      gap: 16px;
+      height: fit-content;
+    }
+
+    .filters h3 {
+      font-size: 14px;
+    }
+
+    .filter-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .filter-group span {
+      color: var(--muted);
+    }
+
+    .results {
+      display: grid;
+      gap: 18px;
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .card-image {
+      height: 120px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .card-meta {
+      font-size: 12px;
+      color: var(--muted);
+      display: grid;
+      gap: 4px;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 18px 24px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 960px) {
+      .header-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .account {
+        justify-content: flex-start;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <div class="header-inner">
+        <div class="logo">RCommerce</div>
+        <div class="search">
+          <input type="text" placeholder="Search product requests, categories, suppliers" />
+          <button type="button">Search</button>
+        </div>
+        <div class="account">
+          <span>Buyer Portal</span>
+          <span>Account</span>
+          <span>Orders</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="content">
+        <aside class="filters">
+          <h3>Request Filters</h3>
+          <div class="filter-group">
+            <strong>Category</strong>
+            <span>Industrial Components</span>
+            <span>Electronics</span>
+            <span>Packaging</span>
+            <span>Apparel</span>
+          </div>
+          <div class="filter-group">
+            <strong>Volume</strong>
+            <span>1k - 10k units</span>
+            <span>10k - 50k units</span>
+            <span>50k+ units</span>
+          </div>
+          <div class="filter-group">
+            <strong>Region</strong>
+            <span>North America</span>
+            <span>Europe</span>
+            <span>Asia-Pacific</span>
+          </div>
+          <div class="filter-group">
+            <strong>Delivery</strong>
+            <span>30 Days</span>
+            <span>60 Days</span>
+            <span>90 Days</span>
+          </div>
+        </aside>
+
+        <section class="results">
+          <div class="results-header">
+            <span>1,284 active product requests</span>
+            <span>Sort by: Most Recent</span>
+          </div>
+          <div class="cards">
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Precision Aluminum Enclosure (IP65)</div>
+              <div class="card-meta">
+                <span>Request ID: RC-10458</span>
+                <span>Target: 12,000 units</span>
+                <span>Ship to: Chicago, IL</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 6 days</span>
+                <span>Verified Buyer</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Custom PCB Assembly - 4 Layer</div>
+              <div class="card-meta">
+                <span>Request ID: RC-10502</span>
+                <span>Target: 8,500 units</span>
+                <span>Ship to: Austin, TX</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 4 days</span>
+                <span>Engineering Spec</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Premium Corrugated Packaging</div>
+              <div class="card-meta">
+                <span>Request ID: RC-10611</span>
+                <span>Target: 42,000 units</span>
+                <span>Ship to: Rotterdam, NL</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 9 days</span>
+                <span>MOQ Flexible</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Stainless Steel Fastener Kit</div>
+              <div class="card-meta">
+                <span>Request ID: RC-10734</span>
+                <span>Target: 18,000 units</span>
+                <span>Ship to: Birmingham, UK</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 14 days</span>
+                <span>ISO Certified</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Textile Fabric Roll - Organic Cotton</div>
+              <div class="card-meta">
+                <span>Request ID: RC-10908</span>
+                <span>Target: 6,200 units</span>
+                <span>Ship to: Seoul, KR</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 7 days</span>
+                <span>Lab Testing Required</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">High-Volume Power Adapters</div>
+              <div class="card-meta">
+                <span>Request ID: RC-10987</span>
+                <span>Target: 65,000 units</span>
+                <span>Ship to: Osaka, JP</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 11 days</span>
+                <span>UL Listed</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Retail POS Counter Display</div>
+              <div class="card-meta">
+                <span>Request ID: RC-11020</span>
+                <span>Target: 3,500 units</span>
+                <span>Ship to: Toronto, CA</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 5 days</span>
+                <span>Design Files Attached</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Industrial Safety Gloves - Level 5</div>
+              <div class="card-meta">
+                <span>Request ID: RC-11201</span>
+                <span>Target: 22,000 units</span>
+                <span>Ship to: Lyon, FR</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 8 days</span>
+                <span>Compliance Docs</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Medical Grade Silicone Tubing</div>
+              <div class="card-meta">
+                <span>Request ID: RC-11322</span>
+                <span>Target: 9,600 units</span>
+                <span>Ship to: Denver, CO</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 13 days</span>
+                <span>FDA Documentation</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Smart Home Sensor Module</div>
+              <div class="card-meta">
+                <span>Request ID: RC-11510</span>
+                <span>Target: 14,200 units</span>
+                <span>Ship to: San Jose, CA</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 10 days</span>
+                <span>OEM Approved</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Cold Chain Insulated Cartons</div>
+              <div class="card-meta">
+                <span>Request ID: RC-11645</span>
+                <span>Target: 28,000 units</span>
+                <span>Ship to: Berlin, DE</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 12 days</span>
+                <span>Temperature Logs</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Commercial LED Panel Array</div>
+              <div class="card-meta">
+                <span>Request ID: RC-11802</span>
+                <span>Target: 7,800 units</span>
+                <span>Ship to: Dubai, AE</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 15 days</span>
+                <span>Energy Star</span>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-image">Thumbnail</div>
+              <div class="card-title">Reusable Logistics Pallets</div>
+              <div class="card-meta">
+                <span>Request ID: RC-11990</span>
+                <span>Target: 5,200 units</span>
+                <span>Ship to: Newark, NJ</span>
+              </div>
+              <div class="card-footer">
+                <span>RFQ closes in 3 days</span>
+                <span>Supply Agreement</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      Enterprise marketplace interface for product requests. Data shown for layout demonstration only.
+    </footer>
+  </div>
+</body>
+</html>
